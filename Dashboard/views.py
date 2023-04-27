@@ -4,17 +4,25 @@ from Electricity.models import Medida, Inversor
 import  Electricity.calculos as calculos
 from django.db.models.functions import TruncHour
 from django.utils import timezone
+from django.db.models import Sum
+from django.utils import timezone
+from datetime import timedelta
 
 
 @login_required
 def home(request):
     
     context = {}
-    context['energia_dia_total'] = calculos.energia('dia')
-    context['energia_semana'] = calculos.energia('semana',1)
-    context['energia_mes'] = calculos.energia('mes',1)
 
-    return render(request, 'dashboard/index.html',context)
+    for inversor in range(1,5):
+        context[f'inversor_{inversor}']                      = calculos.inversor(inversor)
+        context[f'inversor_{inversor}_energia_dia_grafico']   = calculos.energia_grafico('dia',inversor)
+
+    context['energia_dia_total']     = calculos.energia('dia')
+    context['energia_semana_total']  = calculos.energia('semana')
+    context['energia_mes_total']     = calculos.energia('mes')
+
+    return render(request, 'dashboard/index.html', context)
 
 def handler400(request, exception):
     return render(request, 'error/error-404.html')

@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="col-7 text-right">
                                         <h5 class="card-title font-14">Inversor 1</h5>
-                                        <h4 class="mb-0">3.5 kWh</h4>
+                                        <h4 class="mb-0">{{ inversor_1 }} kWh</h4>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="col-7 text-right">
                                         <h5 class="card-title font-14">Inversor 2</h5>
-                                        <h4 class="mb-0">3.5 kWh</h4>
+                                        <h4 class="mb-0">{{ inversor_2 }} kWh</h4>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="col-7 text-right">
                                         <h5 class="card-title font-14">Inversor 3</h5>
-                                        <h4 class="mb-0">3.5 kWh</h4>
+                                        <h4 class="mb-0">{{ inversor_3 }} kWh</h4>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col-7 text-right">
                                         <h5 class="card-title font-14">Inversor 4</h5>
-                                        <h4 class="mb-0">3.5 kWh</h4>
+                                        <h4 class="mb-0">{{ inversor_4 }} kWh</h4>
                                     </div>
                                 </div>
                             </div>
@@ -263,16 +263,16 @@
         colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
         series: [{
             name: "Inversor 1",
-            data: [10, 41, 35, 51, 49, 62, 69, 91]
+            data: {{ inversor_1_energia_dia_grafico }}
         },{
             name: "Inversor 2",
-            data: [12, 31, 45, 84, 49, 52, 29, 41]
+            data: {{ inversor_2_energia_dia_grafico }}
         },{
             name: "Inversor 3",
-            data: [14, 71, 55, 51, 39, 45, 49, 21]
+            data: {{ inversor_3_energia_dia_grafico }}
         },{
             name: "Inversor 4",
-            data: [16, 21, 25, 81, 47, 23, 39, 41]
+            data: {{ inversor_4_energia_dia_grafico }}
         }],
         dataLabels: {
             enabled: false
@@ -817,14 +817,14 @@
             bindto: '#c3-gauge-diario',            
             data: {
                 columns: [
-                    ['Total',91.4]
+                    ['Total',parseFloat('{{energia_dia_total}}'.replace(',', '.'))]
                 ],
                 type: 'gauge',
             },
             gauge: {
                 width: 40,
                 min: 0,
-                max: 100,
+                max: 1000,
                 units: '{{ energia_dia_total }} Kwh',
             },
             color: {
@@ -842,15 +842,15 @@
             bindto: '#c3-gauge-semanal',            
             data: {
                 columns: [
-                    ['Total', 91.4]
+                    ['Total', parseFloat('{{energia_semana_total}}'.replace(',', '.'))]
                 ],
                 type: 'gauge',
             },
             gauge: {
                 width: 40,
                 min: 0,
-                max: 100,
-                units: '100 Kwh',
+                max: 1000,
+                units: '{{ energia_semana_total }} Kwh',
             },
             color: {
                 pattern: ['#ffc107'],
@@ -867,15 +867,15 @@
             bindto: '#c3-gauge-mensal',            
             data: {
                 columns: [
-                    ['Total', 91.4]
+                    ['Total', parseFloat('{{energia_mes_total}}'.replace(',', '.'))]
                 ],
                 type: 'gauge',
             },
             gauge: {
                 width: 40,
                 min: 0,
-                max: 100,
-                units: '100 Kwh',
+                max: 1000,
+                units: '{{ energia_mes_total }} Kwh',
             },
             color: {
                 pattern: ['#ffc107'],
