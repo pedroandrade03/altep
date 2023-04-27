@@ -1,0 +1,87 @@
+
+sudo nano /etc/systemd/system/altep.socket
+
+
+[Unit]
+Description=altep socket
+[Socket]
+ListenStream=/run/altep.sock
+[Install]
+WantedBy=sockets.target
+
+sudo nano /etc/systemd/system/altep.service
+
+
+[Unit]
+Description=altep daemon
+Requires=altep.socket
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/Altep
+ExecStart=/home/ubuntu/Altep/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/altep.sock \
+          Altep.wsgi:application
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl start altep.socket
+sudo systemctl enable altep.socket
+sudo systemctl status altep.socket
+
+file /run/altep.sock
+
+curl --unix-socket /run/altep.sock localhost
+
+sudo nano /etc/nginx/sites-available/altep
+
+server {
+    listen 80;
+    server_name 34.225.247.227;
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/ubuntu/Altep/StaticFiles;
+    }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/altep.sock;
+    }
+}
+sudo systemctl restart altep.socket altep.service
+
+sudo ln -s /etc/nginx/sites-available/altep /etc/nginx/sites-enabled
+
+sudo apt install gcc default-libmysqlclient-dev libssl-dev
+
+sudo docker run --restart always -d --name mariadb -p 3306:3306 \
+    -e MYSQL_ROOT_PASSWORD='Hayu8sy1' mariadb
+
+# Acessando o container e criando o usuário e a base de dados
+docker exec -it mariadb bash
+
+# Acessando a base de dados
+mysql -uroot -p
+(DIGITE A SENHA DO ROOT)
+
+# Criando a base de dados e o usuário da base de dados
+CREATE database altep;
+CREATE USER userdjango@'%' IDENTIFIED BY 'Hayu8sy1';
+GRANT ALL PRIVILEGES ON altep.* TO userdjango@'%';
+FLUSH PRIVILEGES;
+exit
+exit
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'altep',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'userdjango',
+        'PASSWORD': 'Hayu8sy1',
+    }
+}
