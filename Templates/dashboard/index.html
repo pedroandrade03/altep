@@ -297,6 +297,13 @@
                 show: true, 
                 color: 'rgba(0,0,0,0.05)'
             }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
         }
     }
     var chart = new ApexCharts(
@@ -344,6 +351,13 @@
             axisTicks: {
                 show: true, 
                 color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return '$ ' + val
+                }
             }
         }
     }
@@ -402,6 +416,20 @@
                 show: true, 
                 color: 'rgba(0,0,0,0.05)'
             }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
         }
     }
     var chart = new ApexCharts(
@@ -449,6 +477,13 @@
             axisTicks: {
                 show: true, 
                 color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return '$ ' + val
+                }
             }
         }
     }
@@ -508,6 +543,13 @@
                 show: true, 
                 color: 'rgba(0,0,0,0.05)'
             }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
         }
     }
     var chart = new ApexCharts(
@@ -556,255 +598,17 @@
                 show: true, 
                 color: 'rgba(0,0,0,0.05)'
             }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return '$ ' + val
+                }
+            }
         }
     }
     var chart = new ApexCharts(
         document.querySelector("#apex-line-chart-financeiro-mensal"),
-        options
-    );
-    chart.render();
-
-    /* -----  Apex Area Chart ----- */
-    var options = {
-        chart: {
-            height: 300,
-            type: 'area',
-            toolbar: {
-                show: false
-            },
-            zoom: {
-              type: 'x',
-              enabled: false,
-              autoScaleYaxis: true
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth',
-        },
-        colors: ['#0080ff', '#d4d8de'],
-        series: [{
-            name: 'Inward',
-            data: [31, 40, 48, 51, 56, 109, 100]
-        }, {
-            name: 'Outward',
-            data: [11, 32, 45, 52, 57, 60, 71]
-        }],
-        legend: {
-            show: false,
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: ["2018-09-19T00:00:00", "2018-09-19T03:00:00", "2018-09-19T06:00:00", "2018-09-19T09:00:00", "2018-09-19T12:00:00", "2018-09-19T15:00:00", "2018-09-19T18:00:00"],
-            axisBorder: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            },
-            axisTicks: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            }
-        },
-        grid: {
-            row: {
-                colors: ['transparent', 'transparent'], opacity: .2
-            },
-            borderColor: 'rgba(0,0,0,0.05)'
-        },
-        tooltip: {
-            x: {
-                format: 'dd/MM/yy HH:mm'
-            },
-        }
-    }
-    var chart = new ApexCharts(
-        document.querySelector("#apex-area-chart-diario"),
-        options
-    );
-    chart.render();
-    
-
-     /* -----  Apex Area Chart ----- */
-     var options = {
-        chart: {
-            height: 300,
-            type: 'area',
-            toolbar: {
-                show: false
-            },
-            zoom: {
-              type: 'x',
-              enabled: false,
-              autoScaleYaxis: true
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth',
-        },
-        colors: ['#0080ff', '#d4d8de'],
-        series: [{
-            name: 'Inward',
-            data: [31, 40, 28, 51, 42, 109, 100,120]
-        }, {
-            name: 'Outward',
-            data: [11, 32, 45, 32, 34, 52, 41, 71,100]
-        }],
-        legend: {
-            show: false,
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: ["2018-09-19T00:00:00", "2018-09-19T03:00:00", "2018-09-19T06:00:00", "2018-09-19T09:00:00", "2018-09-19T12:00:00", "2018-09-19T15:00:00", "2018-09-19T18:00:00","2018-09-19T21:00:00","2018-09-19T23:59:00"],
-            axisBorder: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            },
-            axisTicks: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            }
-        },
-        grid: {
-            row: {
-                colors: ['transparent', 'transparent'], opacity: .2
-            },
-            borderColor: 'rgba(0,0,0,0.05)'
-        },
-        tooltip: {
-            x: {
-                format: 'dd/MM/yy HH:mm'
-            },
-        }
-    }
-    var chart = new ApexCharts(
-        document.querySelector("#apex-area-chart-energia-diario"),
-        options
-    );
-    chart.render();
-    var options = {
-        chart: {
-            height: 300,
-            type: 'area',
-            toolbar: {
-                show: false
-            },
-            zoom: {
-              type: 'x',
-              enabled: false,
-              autoScaleYaxis: true
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth',
-        },
-        colors: ['#0080ff', '#d4d8de'],
-        series: [{
-            name: 'Inward',
-            data: [31, 40, 28, 51, 42, 109, 100]
-        }, {
-            name: 'Outward',
-            data: [11, 32, 45, 32, 34, 52, 41]
-        }],
-        legend: {
-            show: false,
-        },
-        xaxis: {
-            categories: ["Segunda", "Terca", "Quarta",'Quinta','Sexta','Sabado','Domingo'],
-            axisBorder: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            },
-            axisTicks: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            }
-        },
-        grid: {
-            row: {
-                colors: ['transparent', 'transparent'], opacity: .2
-            },
-            borderColor: 'rgba(0,0,0,0.05)'
-        },
-        tooltip: {
-            x: {
-                format: 'dd/MM/yy HH:mm'
-            },
-        }
-    }
-    var chart = new ApexCharts(
-        document.querySelector("#apex-area-chart-energia-semanal"),
-        options
-    );
-    chart.render();
-    var options = {
-        chart: {
-            height: 300,
-            type: 'area',
-            toolbar: {
-                show: false
-            },
-            zoom: {
-              type: 'x',
-              enabled: false,
-              autoScaleYaxis: true
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth',
-        },
-        colors: ['#0080ff', '#0080ff', '#0080ff', '#0080ff'],
-        series: [{
-            name: 'Inward',
-            data: [31, 40, 28, 51]
-        }, {
-            name: 'Outward',
-            data: [11, 32, 45, 32]
-        }, {
-            name: 'Outward',
-            data: [13, 35, 48, 49]
-        }, {
-            name: 'Outward',
-            data: [15, 24, 42, 50]
-        }],
-        legend: {
-            show: false,
-        },
-        xaxis: {
-            categories: ['1º Semana', '2º Semana', '3º Semana', '4º Semana'],
-            axisBorder: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            },
-            axisTicks: {
-                show: true, 
-                color: 'rgba(0,0,0,0.05)'
-            }
-        },
-        grid: {
-            row: {
-                colors: ['transparent', 'transparent'], opacity: .2
-            },
-            borderColor: 'rgba(0,0,0,0.05)'
-        },
-        tooltip: {
-            x: {
-                format: 'dd/MM/yy HH:mm'
-            },
-        }
-    }
-    var chart = new ApexCharts(
-        document.querySelector("#apex-area-chart-energia-mensal"),
         options
     );
     chart.render();
