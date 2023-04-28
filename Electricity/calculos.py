@@ -73,7 +73,7 @@ def energia_grafico(data,inversor):
         for day in range(0, 7):
             dia_semana           = (now - timedelta(days=now.weekday() + 1)) + timedelta(days=day)
             dia_da_semana_inicio = dia_semana.replace(hour=0, minute=0, second=0, microsecond=0)
-            dia_da_semana_final  = dia_da_semana_inicio + timedelta(hours=23,minutes=59,seconds=59)
+            dia_da_semana_final  = dia_da_semana_inicio + timedelta(hours=23,minutes=59,seconds=59,microseconds=59)
 
             filter_kwargs['created__gte'] = dia_da_semana_inicio
             filter_kwargs['created__lte'] = dia_da_semana_final
@@ -83,6 +83,23 @@ def energia_grafico(data,inversor):
             list_grafic.append(medida)
 
         return list_grafic
+    
+    if data == MES:
+        filter_kwargs = {}
+        inicio_mes    = now.replace(day=1,hour=0, minute=0, second=0, microsecond=0)
+        dia_da_semana = (inicio_mes + timedelta(days=1)).weekday()
+        inicio_da_semana = inicio_mes
+        for semana in range(7,29,7):
+            fim_da_semana = (inicio_da_semana + timedelta(days=6)).replace(hour=23,minute=59,second=59,microsecond=59)
+
+            filter_kwargs['created__gte'] = inicio_da_semana
+            filter_kwargs['created__lte'] = fim_da_semana
+            medida = (Medida.objects.filter(**filter_kwargs).filter(painel=inversor).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA
+            inicio_da_semana = inicio_da_semana + timedelta(days=7)
+            
+            list_grafic.append(medida)
+        
+    return list_grafic
 
 
 def inversor(inversor):
