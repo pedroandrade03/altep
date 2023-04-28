@@ -20,10 +20,13 @@ def home(request):
         context[f'inversor_{inversor}_energia_semana_grafico'] = calculos.energia_grafico('semana',inversor)
         context[f'inversor_{inversor}_energia_mes_grafico']    = calculos.energia_grafico('mes',inversor)
 
+    context['energia_dia_economia_grafico']     = calculos.economia_grafico('dia')
+    context['energia_semana_economia_grafico']  = calculos.economia_grafico('semana')
+    context['energia_mes_economia_grafico']     = calculos.economia_grafico('mes')
+
     context['energia_dia_total']     = calculos.energia('dia')
     context['energia_semana_total']  = calculos.energia('semana')
     context['energia_mes_total']     = calculos.energia('mes')
-    context['energia_mes_totateztel']     = calculos.energia_grafico('mes',1)
 
 
     return render(request, 'dashboard/index.html', context)

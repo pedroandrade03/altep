@@ -24,4 +24,15 @@ class Medida(models.Model):
 
     def __str__(self):
         return str(self.painel)
+    
+class Energia(models.Model):
+    created         = models.DateTimeField(auto_now_add=True)
+    updated_at      = models.DateTimeField(auto_now=True)
+
+    custo_por_kwh   = models.FloatField(blank=True, null=True)
+    ativo           = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        Energia.objects.filter(ativo=True).update(ativo=False)
+        super().save(*args, **kwargs)
         
