@@ -191,7 +191,19 @@ def inversor(inversor):
     else:
         medida = (medida.potenciav2 / MEDIDA)
 
-    return medida, status
+    anterior    = Medida.objects.filter(painel=inversor).order_by('created').reverse()[1]
+
+    if anterior == None:  
+        anterior = 0
+    else:
+        anterior = (anterior.potenciav2 / MEDIDA)
+
+    try:
+        anterior    = ((medida - anterior) / anterior) * 100
+    except:
+        anterior    = 0
+
+    return medida, status, round(anterior,1)
 
             
     
