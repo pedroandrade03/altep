@@ -9,13 +9,13 @@ MEDIDA  = 1000
 
 def energia(data,inversor=False):
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now()
 
     if data == DIA:
         filter_kwargs  = {
             'created__year':now.year,
             'created__month':now.month,
-            'created__day':now.day 
+            'created__day':now.day
             }
         
     elif data == SEMANA:
@@ -40,7 +40,7 @@ def energia(data,inversor=False):
 
 def energia_grafico(data,inversor):
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now()
 
     inversor = Inversor.objects.get(number=inversor)
 
@@ -109,7 +109,7 @@ def economia_grafico(data):
         print(error)
         kwh_custo = 0
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now()
 
     list_grafic = []
 
@@ -130,7 +130,7 @@ def economia_grafico(data):
             else:
                 medida = (medida.potenciav2 / MEDIDA) * kwh_custo
 
-            list_grafic.append(medida)
+            list_grafic.append(round(medida,3))
 
         return list_grafic
     
@@ -147,7 +147,7 @@ def economia_grafico(data):
 
             medida = ((Medida.objects.filter(**filter_kwargs).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA) * kwh_custo
 
-            list_grafic.append(medida)
+            list_grafic.append(round(medida,3))
 
         return list_grafic
     
@@ -164,7 +164,7 @@ def economia_grafico(data):
             medida = ((Medida.objects.filter(**filter_kwargs).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA) * kwh_custo
             inicio_da_semana = inicio_da_semana + timedelta(days=7)
             
-            list_grafic.append(medida)
+            list_grafic.append(round(medida,3))
         
     return list_grafic
 
@@ -173,16 +173,25 @@ def economia_grafico(data):
 
 def inversor(inversor):
 
-    inversor = Inversor.objects.get(number=inversor)
+    inversor    = Inversor.objects.get(number=inversor)
 
-    medida = Medida.objects.filter(painel=inversor).last()
+    online_time = datetime.now() - timedelta(hours=2)
+
+    online      = Medida.objects.filter(painel=inversor,created__gte=online_time).last()
+
+    if online == None:
+        status = False
+    else:
+        status = True
+
+    medida      = Medida.objects.filter(painel=inversor).last()
 
     if medida == None:  
         medida = 0
     else:
         medida = (medida.potenciav2 / MEDIDA)
 
-    return medida
+    return medida, status
 
             
     

@@ -15,7 +15,7 @@ def home(request):
     context = {}
 
     for inversor in range(1,5):
-        context[f'inversor_{inversor}']                        = calculos.inversor(inversor)
+        context[f'inversor_{inversor}'], context[f'inversor_{inversor}_status'] = calculos.inversor(inversor)
         context[f'inversor_{inversor}_energia_dia_grafico']    = calculos.energia_grafico('dia',inversor)
         context[f'inversor_{inversor}_energia_semana_grafico'] = calculos.energia_grafico('semana',inversor)
         context[f'inversor_{inversor}_energia_mes_grafico']    = calculos.energia_grafico('mes',inversor)
@@ -27,7 +27,6 @@ def home(request):
     context['energia_dia_total']     = calculos.energia('dia')
     context['energia_semana_total']  = calculos.energia('semana')
     context['energia_mes_total']     = calculos.energia('mes')
-
 
     return render(request, 'dashboard/index.html', context)
 
