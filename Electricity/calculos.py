@@ -188,7 +188,7 @@ def inversor(inversor):
     anterior    = 0
     
     if medida == None:  
-        medida = 0
+        medida = 0.0
     else:
         medida = (medida.potenciav2 / MEDIDA)
 
@@ -204,7 +204,7 @@ def inversor(inversor):
         except:
             anterior    = 0
 
-    return medida, status, round(anterior,1)
+    return round(medida,1), status, round(anterior,1)
 
             
     
