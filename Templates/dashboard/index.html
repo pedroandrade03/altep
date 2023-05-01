@@ -31,16 +31,24 @@
                             <div class="card-footer">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <span class="font-13">Estado 
+                                        <span class="font-13"> 
                                             {% if inversor_1_status %}
-                                                on
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
                                             {% else %}
-                                                off
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
                                             {% endif %}
                                         </span>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% if inversor_1_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% elif inversor_1_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% elif inversor_1_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -62,16 +70,24 @@
                             <div class="card-footer">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <span class="font-13">Estado
+                                        <span class="font-13">
                                             {% if inversor_2_status %}
-                                                on
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
                                             {% else %}
-                                                off
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
                                             {% endif %}
                                         </span>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% if inversor_2_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% elif inversor_2_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% elif inversor_2_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -93,16 +109,24 @@
                             <div class="card-footer">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <span class="font-13">Estado
-                                            {% if inversor_1_status %}
-                                                on
+                                        <span class="font-13">
+                                            {% if inversor_3_status %}
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
                                             {% else %}
-                                                off
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
                                             {% endif %}
                                         </span>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% if inversor_3_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% elif inversor_3_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% elif inversor_3_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -124,16 +148,24 @@
                             <div class="card-footer">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <span class="font-13">Estado
-                                            {% if inversor_1_status %}
-                                                on
+                                        <span class="font-13">
+                                            {% if inversor_4_status %}
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
                                             {% else %}
-                                                off
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
                                             {% endif %}
                                         </span>
                                     </div>
                                     <div class="col-4 text-right">
-                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% if inversor_4_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% elif inversor_4_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% elif inversor_4_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

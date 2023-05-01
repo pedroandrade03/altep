@@ -185,26 +185,40 @@ def inversor(inversor):
         status = True
 
     medida      = Medida.objects.filter(painel=inversor).last()
+
     anterior    = 0
+
+    last_activity = None
     
     if medida == None:  
         medida = 0.0
+        variation = 'keep'
     else:
+        last_activity = medida.created
         medida = (medida.potenciav2 / MEDIDA)
 
         anterior    = Medida.objects.filter(painel=inversor).order_by('created').reverse()[1]
 
         if anterior == None:  
-            anterior = 0
+            anterior = 0.0
         else:
             anterior = (anterior.potenciav2 / MEDIDA)
 
-        try:
-            anterior    = ((medida - anterior) / anterior) * 100
-        except:
-            anterior    = 0
+        if medida > anterior:
+            variation =  'up'
 
-    return round(medida,1), status, round(anterior,1)
+        elif medida < anterior:
+            variation =  'down'
+
+        else:
+            variation =  'keep'
+
+        try:
+            anterior    = (((medida) - (anterior)) / anterior) * 100
+        except:
+            anterior    = 0.0
+
+    return round(medida,1), status, abs(round(anterior,1)), variation, last_activity
 
             
     
