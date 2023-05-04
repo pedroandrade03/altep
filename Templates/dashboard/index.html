@@ -1,0 +1,752 @@
+{% extends 'components/dashboard/base.html' %}
+{% load static %}
+{% block head %}
+    <!-- Chartist Chart css -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/chartist-js/chartist.min.css' %}">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/flag-icon.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block titlescrum %}Início{% endblock %}
+{% block descptcrum %}Esta é a pagina inicial do sistema de gerenciamento energico foto voltaico da Facens{% endblock %}
+{% block contentbar %}
+            <!-- Start Contentbar -->    
+            <div class="contentbar">                
+                <!-- Start row -->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-1 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 1</h5>
+                                        <h4 class="mb-0">{{ inversor_1 }} kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13"> 
+                                            {% if inversor_1_status %}
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
+                                            {% else %}
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        {% if inversor_1_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% elif inversor_1_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% elif inversor_1_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_1_percent }}%</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-2 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 2</h5>
+                                        <h4 class="mb-0">{{ inversor_2 }} kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">
+                                            {% if inversor_2_status %}
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
+                                            {% else %}
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        {% if inversor_2_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% elif inversor_2_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% elif inversor_2_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_2_percent }}%</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-3 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 3</h5>
+                                        <h4 class="mb-0">{{ inversor_3 }} kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">
+                                            {% if inversor_3_status %}
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
+                                            {% else %}
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        {% if inversor_3_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% elif inversor_3_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% elif inversor_3_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_3_percent }}%</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-4 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 4</h5>
+                                        <h4 class="mb-0">{{ inversor_4 }} kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">
+                                            {% if inversor_4_status %}
+                                                <i class="mdi mdi-circle text-success mr-2"></i>
+                                                Ativo
+                                            {% else %}
+                                                <i class="mdi mdi-circle text-danger mr-2"></i>
+                                                Inativo
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        {% if inversor_4_variation == 'up' %}
+                                            <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% elif inversor_4_variation == 'down' %}
+                                            <span class="badge badge-danger"><i class="feather icon-trending-down mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% elif inversor_4_variation == 'keep' %}
+                                            <span class="badge badge-secondary"><i class="feather icon-activity mr-1"></i>{{ inversor_4_percent }}%</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Diaria de Energia Total</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="c3-gauge-diario" style="height:150px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Semanal de Energia Total</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="c3-gauge-semanal" style="height:150px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Mensal de Energia Total</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="c3-gauge-mensal" style="height:150px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Diaria de Energia</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-energia-diario"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Semanal de Energia</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-energia-semanal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Mensal de Energia</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-energia-mensal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Economia Diaria de Energia em Capital</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-financeiro-diario"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Economia Semanal de Energia em Capital</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-financeiro-semanal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Economia Mensal de Energia em Capital</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-financeiro-mensal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                
+                <!-- End row -->
+            </div>
+            <!-- End Contentbar -->
+{% endblock %}
+{% block js %}
+    <!-- Dashboard js -->
+    <script src="{% static 'assets/plugins/chartist-js/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/chartist-js/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'assets/js/custom/custom-chart-chartistjs.js' %}"></script>
+    <script src="{% static 'assets/js/core.js' %}"></script>
+    <!-- C3 Chart js -->
+    <script src="{% static 'assets/plugins/d3/d3.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/c3/c3.min.js' %}"></script>
+<script>
+    "use strict";
+    $(document).ready(function() {
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        series: [{
+            name: "Inversor 1",
+            data: {{ inversor_1_energia_dia_grafico }}
+        },{
+            name: "Inversor 2",
+            data: {{ inversor_2_energia_dia_grafico }}
+        },{
+            name: "Inversor 3",
+            data: {{ inversor_3_energia_dia_grafico }}
+        },{
+            name: "Inversor 4",
+            data: {{ inversor_4_energia_dia_grafico }}
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-energia-diario"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','white'],
+        series: [{
+            name: "Total",
+            data: {{ energia_dia_economia_grafico }}
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return '$ ' + val
+                }
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-financeiro-diario"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        series: [{
+            name: "Inversor 1",
+            data: {{ inversor_1_energia_semana_grafico }}
+        },{
+            name: "Inversor 2",
+            data: {{ inversor_2_energia_semana_grafico }}
+        },{
+            name: "Inversor 3",
+            data: {{ inversor_3_energia_semana_grafico }}
+        },{
+            name: "Inversor 4",
+            data: {{ inversor_4_energia_semana_grafico }}
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['Domingo', 'Segunda-Feira', 'Terca-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-energia-semanal"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','white'],
+        series: [{
+            name: "Total",
+            data: {{ energia_semana_economia_grafico }}
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['Domingo', 'Segunda-Feira', 'Terca-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return '$ ' + val
+                }
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-financeiro-semanal"),
+        options
+    );
+    chart.render();
+    
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        series: [{
+            name: "Inversor 1",
+            data: {{ inversor_1_energia_mes_grafico }}
+        },{
+            name: "Inversor 2",
+            data: {{ inversor_2_energia_mes_grafico }}
+        },{
+            name: "Inversor 3",
+            data: {{ inversor_3_energia_mes_grafico }}
+        },{
+            name: "Inversor 4",
+            data: {{ inversor_4_energia_mes_grafico }}
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['1º Semana', '2º Semana', '3º Semana', '4º Semana'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return  val + " kWh"
+                }
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-energia-mensal"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','white'],
+        series: [{
+            name: "Total",
+            data: {{ energia_mes_economia_grafico }}
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['1º Semana', '2º Semana', '3º Semana', '4º Semana'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (val) {
+                    return '$ ' + val
+                }
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-financeiro-mensal"),
+        options
+    );
+    chart.render();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        /* -- C3 - Gauge Chart -- */
+        var gaugeChart = c3.generate({
+            bindto: '#c3-gauge-diario',            
+            data: {
+                columns: [
+                    ['Total',parseFloat('{{energia_dia_total}}'.replace(',', '.'))]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                width: 40,
+                min: 0,
+                max: 1000,
+                units: '{{ energia_dia_total }} Kwh',
+            },
+            color: {
+                pattern: ['#ffc107'],
+                threshold: {
+                    values: [90]
+                }
+            },
+            size: {
+                height: 150
+            }
+        });
+
+        var gaugeChart = c3.generate({
+            bindto: '#c3-gauge-semanal',            
+            data: {
+                columns: [
+                    ['Total', parseFloat('{{energia_semana_total}}'.replace(',', '.'))]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                width: 40,
+                min: 0,
+                max: 1000,
+                units: '{{ energia_semana_total }} Kwh',
+            },
+            color: {
+                pattern: ['#ffc107'],
+                threshold: {
+                    values: [90]
+                }
+            },
+            size: {
+                height: 150
+            }
+        });
+
+        var gaugeChart = c3.generate({
+            bindto: '#c3-gauge-mensal',            
+            data: {
+                columns: [
+                    ['Total', parseFloat('{{energia_mes_total}}'.replace(',', '.'))]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                width: 40,
+                min: 0,
+                max: 1000,
+                units: '{{ energia_mes_total }} Kwh',
+            },
+            color: {
+                pattern: ['#ffc107'],
+                threshold: {
+                    values: [90]
+                }
+            },
+            size: {
+                height: 150
+            }
+        });
+    });
+</script>
+{% endblock %}

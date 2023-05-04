@@ -1,0 +1,8 @@
+python -m venv ./AmbienteVirtual 
+
+AmbienteVirtual\Scripts\activate
+
+pip install django requests
+
+pip freeze > requirements.txt
+

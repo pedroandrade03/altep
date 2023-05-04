@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include 'components/dashboard/head.html' %}
+    {% block head %}{% endblock %}
+</head>
+<body class="horizontal-layout">
+    {% include 'components/dashboard/infobar.html' %}
+    <!-- Start Containerbar -->
+    <div id="containerbar" class="container-fluid">
+        <!-- Start Rightbar -->
+        <div class="rightbar">
+            {% include 'components/dashboard/topbarmobile.html' %}
+            {% include 'components/dashboard/topbar.html' %}
+
+            {% include 'components/dashboard/navigationbar.html' %}
+
+            <div class="breadcrumbbar">
+                <div class="row align-items-center">
+                    <div class="col-md-8 col-lg-8">
+                        <h4 class="page-title">{% block titlescrum %}{% endblock %}</h4>
+                        <div class="breadcrumb-list">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">{% block descptcrum %}{% endblock %}</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>          
+            </div>
+
+            {% block contentbar %}
+            {% endblock %}
+
+            {% include 'components/dashboard/footer.html' %}
+        </div>
+        <!-- End Rightbar -->
+    </div>
+    <!-- End Containerbar -->
+    {% include 'components/dashboard/js.html' %}
+    {% block js %}{% endblock %}
+</body>
+</html>
