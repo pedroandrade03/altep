@@ -11,10 +11,10 @@
                     <!-- Start col -->
                     <div class="col-md-8 col-lg-6">
                         <div class="text-center">
-                            <img src="assets/images/error/internal-server.svg" class="img-fluid error-image" alt="500">
+                            <img src="{% static 'assets/images/error/internal-server.svg' %}" class="img-fluid error-image" alt="500">
                             <h4 class="error-subtitle mb-4">500 Erro interno do servidor</h4>
                             <p class="mb-4">O servidor encontrou um erro interno ou uma configuração incorreta e não conseguiu concluir sua solicitação.</p>                           
-                            <a href="index.html" class="btn btn-warning font-16"><i class="feather icon-home mr-2"></i> Voltar para o Dashboard</a>
+                            <a href="{% url 'home' %}" class="btn btn-warning font-16"><i class="feather icon-home mr-2"></i> Voltar para o Dashboard</a>
                         </div>
                     </div>
                     <!-- End col -->
