@@ -31,7 +31,7 @@ def home(request):
     return render(request, 'dashboard/index.html', context)
 
 def handler400(request, exception):
-    return render(request, 'error/error-404.html')
+    return render(request, 'error/error-maintenance.html')
 
 def handler403(request, exception):
     return render(request, 'error/error-404.html')
