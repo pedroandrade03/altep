@@ -1,7 +1,7 @@
 
 sudo nano /etc/systemd/system/altep.socket
 
-
+s
 [Unit]
 Description=altep socket
 [Socket]
