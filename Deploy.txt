@@ -85,5 +85,3 @@ DATABASES = {
         'PASSWORD': 'Hayu8sy1',
     }
 }
-
-AA
