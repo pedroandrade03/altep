@@ -412,7 +412,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return '$ ' + val
+                    return 'R$ ' + val
                 }
             }
         }
@@ -538,7 +538,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return '$ ' + val
+                    return 'R$ ' + val
                 }
             }
         }
@@ -658,7 +658,7 @@
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return '$ ' + val
+                    return 'R$ ' + val
                 }
             }
         }
@@ -684,8 +684,8 @@
             gauge: {
                 width: 40,
                 min: 0,
-                max: 1000,
-                units: '{{ energia_dia_total }} Kwh',
+                max: 200,
+                units: '{{ energia_dia_total }} kWh',
             },
             color: {
                 pattern: ['#ffc107'],
@@ -709,8 +709,8 @@
             gauge: {
                 width: 40,
                 min: 0,
-                max: 1000,
-                units: '{{ energia_semana_total }} Kwh',
+                max: 5000,
+                units: '{{ energia_semana_total }} kWh',
             },
             color: {
                 pattern: ['#ffc107'],
@@ -735,7 +735,7 @@
                 width: 40,
                 min: 0,
                 max: 1000,
-                units: '{{ energia_mes_total }} Kwh',
+                units: '{{ energia_mes_total }} kWh',
             },
             color: {
                 pattern: ['#ffc107'],

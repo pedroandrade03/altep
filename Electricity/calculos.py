@@ -130,7 +130,7 @@ def economia_grafico(data):
             else:
                 medida = (medida.potenciav2 / MEDIDA) * kwh_custo
 
-            list_grafic.append(round(medida,3))
+            list_grafic.append(round(medida, 2))
 
         return list_grafic
     
@@ -147,7 +147,7 @@ def economia_grafico(data):
 
             medida = ((Medida.objects.filter(**filter_kwargs).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA) * kwh_custo
 
-            list_grafic.append(round(medida,3))
+            list_grafic.append(round(medida, 2))
 
         return list_grafic
     
@@ -164,7 +164,7 @@ def economia_grafico(data):
             medida = ((Medida.objects.filter(**filter_kwargs).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA) * kwh_custo
             inicio_da_semana = inicio_da_semana + timedelta(days=7)
             
-            list_grafic.append(round(medida,3))
+            list_grafic.append(round(medida, 2))
         
     return list_grafic
 
@@ -218,7 +218,7 @@ def inversor(inversor):
         except:
             anterior    = 0.0
 
-    return round(medida,1), status, abs(round(anterior,1)), variation, last_activity
+    return round(medida,1), status, abs(round(anterior, 2)), variation, last_activity
 
             
     
