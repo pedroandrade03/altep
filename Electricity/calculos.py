@@ -218,7 +218,7 @@ def inversor(inversor):
         except:
             anterior    = 0.0
 
-    return round(medida,1), status, abs(round(anterior, 2)), variation, last_activity
+    return round(medida,2), status, abs(round(anterior, 2)), variation, last_activity
 
             
     
