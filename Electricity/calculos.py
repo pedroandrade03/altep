@@ -36,7 +36,7 @@ def energia(data,inversor=False):
         inversor = Inversor.objects.get(number=inversor)
         filter_kwargs ['painel'] = inversor
     
-    return (Medida.objects.filter(**filter_kwargs).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA
+    return round((Medida.objects.filter(**filter_kwargs).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA, 2)
 
 def energia_grafico(data,inversor):
 
@@ -63,7 +63,7 @@ def energia_grafico(data,inversor):
             else:
                 medida = medida.potenciav2 / MEDIDA
 
-            list_grafic.append(medida)
+            list_grafic.append(round(medida,2))
 
         return list_grafic
     
@@ -80,7 +80,7 @@ def energia_grafico(data,inversor):
 
             medida = (Medida.objects.filter(**filter_kwargs).filter(painel=inversor).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA
 
-            list_grafic.append(medida)
+            list_grafic.append(round(medida, 2))
 
         return list_grafic
     
@@ -97,7 +97,7 @@ def energia_grafico(data,inversor):
             medida = (Medida.objects.filter(**filter_kwargs).filter(painel=inversor).aggregate(Sum('potenciav2'))['potenciav2__sum'] or 0) / MEDIDA
             inicio_da_semana = inicio_da_semana + timedelta(days=7)
             
-            list_grafic.append(medida)
+            list_grafic.append(round(medida, 2))
         
     return list_grafic
 
@@ -218,7 +218,7 @@ def inversor(inversor):
         except:
             anterior    = 0.0
 
-    return round(medida,1), status, abs(round(anterior, 2)), variation, last_activity
+    return round(medida,2), status, abs(round(anterior, 2)), variation, last_activity
 
             
     
