@@ -1,0 +1,901 @@
+{% extends 'components/dashboard/base.html' %}
+{% load static %}
+{% block head %}
+    <!-- Chartist Chart css -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/chartist-js/chartist.min.css' %}">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/flag-icon.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block titlescrum %}Início{% endblock %}
+{% block descptcrum %}Esta é a pagina inicial do sistema de gerenciamento energico foto voltaico da Facens{% endblock %}
+{% block contentbar %}
+            <!-- Start Contentbar -->    
+            <div class="contentbar">                
+                <!-- Start row -->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-1 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 1</h5>
+                                        <h4 class="mb-0">3.5 kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">Estado</span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>25%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-2 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 2</h5>
+                                        <h4 class="mb-0">3.5 kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">Estado</span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>25%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-3 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 3</h5>
+                                        <h4 class="mb-0">3.5 kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">Estado</span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>25%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card m-b-30">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-5">
+                                        <span class="action-icon badge badge-inversor-4 mr-0"><i class="dripicons-brightness-max"></i></span>
+                                    </div>
+                                    <div class="col-7 text-right">
+                                        <h5 class="card-title font-14">Inversor 4</h5>
+                                        <h4 class="mb-0">3.5 kWh</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="font-13">Estado</span>
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <span class="badge badge-success"><i class="feather icon-trending-up mr-1"></i>25%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Diaria de Energia Total</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="c3-gauge-diario" style="height:150px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Semanal de Energia Total</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="c3-gauge-semanal" style="height:150px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Mensal de Energia Total</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="c3-gauge-mensal" style="height:150px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Diaria de Energia</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-energia-diario"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Semanal de Energia</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-energia-semanal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Produção Mensal de Energia</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-energia-mensal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                    
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Economia Diaria de Energia em Capital</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-financeiro-diario"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Economia Semanal de Energia em Capital</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-financeiro-semanal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+
+                    <!-- Start col -->
+                    <div class="col-lg-4">
+                        <div class="card m-b-30">
+                            <div class="card-header">
+                                <h5 class="card-title">Economia Mensal de Energia em Capital</h5>
+                            </div>
+                            <div class="card-body">
+                                <div id="apex-line-chart-financeiro-mensal"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                
+                <!-- End row -->
+            </div>
+            <!-- End Contentbar -->
+{% endblock %}
+{% block js %}
+    <!-- Dashboard js -->
+    <script src="{% static 'assets/plugins/chartist-js/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/chartist-js/chartist-plugin-tooltip.min.js' %}"></script>
+    <script src="{% static 'assets/js/custom/custom-chart-chartistjs.js' %}"></script>
+    <script src="{% static 'assets/js/core.js' %}"></script>
+    <!-- C3 Chart js -->
+    <script src="{% static 'assets/plugins/d3/d3.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/c3/c3.min.js' %}"></script>
+<script>
+    "use strict";
+    $(document).ready(function() {
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        series: [{
+            name: "Inversor 1",
+            data: [10, 41, 35, 51, 49, 62, 69, 91]
+        },{
+            name: "Inversor 2",
+            data: [12, 31, 45, 84, 49, 52, 29, 41]
+        },{
+            name: "Inversor 3",
+            data: [14, 71, 55, 51, 39, 45, 49, 21]
+        },{
+            name: "Inversor 4",
+            data: [16, 21, 25, 81, 47, 23, 39, 41]
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-energia-diario"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#00FFFF','white'],
+        series: [{
+            name: "Total",
+            data: [10, 41, 35, 51, 49, 62, 69, 91]
+        },{
+            name: "",
+            data: []
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-financeiro-diario"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        series: [{
+            name: "Inversor 1",
+            data: [10, 41, 35, 51, 49, 62, 69]
+        },{
+            name: "Inversor 2",
+            data: [12, 31, 45, 84, 49, 52, 29]
+        },{
+            name: "Inversor 3",
+            data: [14, 71, 55, 51, 39, 45, 49]
+        },{
+            name: "Inversor 4",
+            data: [16, 21, 25, 81, 47, 23, 39]
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['Domingo', 'Segunda-Feira', 'Terca-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-energia-semanal"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#00FFFF','white'],
+        series: [{
+            name: "Total",
+            data: [10, 41, 35, 51, 49, 62, 69]
+        },{
+            name: "",
+            data: []
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['Domingo', 'Segunda-Feira', 'Terca-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sabado'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-financeiro-semanal"),
+        options
+    );
+    chart.render();
+    
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        series: [{
+            name: "Inversor 1",
+            data: [10, 41, 35, 51]
+        },{
+            name: "Inversor 2",
+            data: [12, 31, 45, 84]
+        },{
+            name: "Inversor 3",
+            data: [14, 71, 55, 51]
+        },{
+            name: "Inversor 4",
+            data: [16, 21, 25, 81]
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['1º Semana', '2º Semana', '3º Semana', '4º Semana'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-energia-mensal"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Line Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        colors: ['#00FFFF','white'],
+        series: [{
+            name: "Total",
+            data: [10, 41, 35, 51]
+        },{
+            name: "",
+            data: []
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3,
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        xaxis: {
+            categories: ['1º Semana', '2º Semana', '3º Semana', '4º Semana'],
+            axisBorder: {
+                show: true,     
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-line-chart-financeiro-mensal"),
+        options
+    );
+    chart.render();
+
+    /* -----  Apex Area Chart ----- */
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+              type: 'x',
+              enabled: false,
+              autoScaleYaxis: true
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+        },
+        colors: ['#0080ff', '#d4d8de'],
+        series: [{
+            name: 'Inward',
+            data: [31, 40, 48, 51, 56, 109, 100]
+        }, {
+            name: 'Outward',
+            data: [11, 32, 45, 52, 57, 60, 71]
+        }],
+        legend: {
+            show: false,
+        },
+        xaxis: {
+            type: 'datetime',
+            categories: ["2018-09-19T00:00:00", "2018-09-19T03:00:00", "2018-09-19T06:00:00", "2018-09-19T09:00:00", "2018-09-19T12:00:00", "2018-09-19T15:00:00", "2018-09-19T18:00:00"],
+            axisBorder: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-area-chart-diario"),
+        options
+    );
+    chart.render();
+    
+
+     /* -----  Apex Area Chart ----- */
+     var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+              type: 'x',
+              enabled: false,
+              autoScaleYaxis: true
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+        },
+        colors: ['#0080ff', '#d4d8de'],
+        series: [{
+            name: 'Inward',
+            data: [31, 40, 28, 51, 42, 109, 100,120]
+        }, {
+            name: 'Outward',
+            data: [11, 32, 45, 32, 34, 52, 41, 71,100]
+        }],
+        legend: {
+            show: false,
+        },
+        xaxis: {
+            type: 'datetime',
+            categories: ["2018-09-19T00:00:00", "2018-09-19T03:00:00", "2018-09-19T06:00:00", "2018-09-19T09:00:00", "2018-09-19T12:00:00", "2018-09-19T15:00:00", "2018-09-19T18:00:00","2018-09-19T21:00:00","2018-09-19T23:59:00"],
+            axisBorder: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-area-chart-energia-diario"),
+        options
+    );
+    chart.render();
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+              type: 'x',
+              enabled: false,
+              autoScaleYaxis: true
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+        },
+        colors: ['#0080ff', '#d4d8de'],
+        series: [{
+            name: 'Inward',
+            data: [31, 40, 28, 51, 42, 109, 100]
+        }, {
+            name: 'Outward',
+            data: [11, 32, 45, 32, 34, 52, 41]
+        }],
+        legend: {
+            show: false,
+        },
+        xaxis: {
+            categories: ["Segunda", "Terca", "Quarta",'Quinta','Sexta','Sabado','Domingo'],
+            axisBorder: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-area-chart-energia-semanal"),
+        options
+    );
+    chart.render();
+    var options = {
+        chart: {
+            height: 300,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+            zoom: {
+              type: 'x',
+              enabled: false,
+              autoScaleYaxis: true
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+        },
+        colors: ['#0080ff', '#0080ff', '#0080ff', '#0080ff'],
+        series: [{
+            name: 'Inward',
+            data: [31, 40, 28, 51]
+        }, {
+            name: 'Outward',
+            data: [11, 32, 45, 32]
+        }, {
+            name: 'Outward',
+            data: [13, 35, 48, 49]
+        }, {
+            name: 'Outward',
+            data: [15, 24, 42, 50]
+        }],
+        legend: {
+            show: false,
+        },
+        xaxis: {
+            categories: ['1º Semana', '2º Semana', '3º Semana', '4º Semana'],
+            axisBorder: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            },
+            axisTicks: {
+                show: true, 
+                color: 'rgba(0,0,0,0.05)'
+            }
+        },
+        grid: {
+            row: {
+                colors: ['transparent', 'transparent'], opacity: .2
+            },
+            borderColor: 'rgba(0,0,0,0.05)'
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm'
+            },
+        }
+    }
+    var chart = new ApexCharts(
+        document.querySelector("#apex-area-chart-energia-mensal"),
+        options
+    );
+    chart.render();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        /* -- C3 - Gauge Chart -- */
+        var gaugeChart = c3.generate({
+            bindto: '#c3-gauge-diario',            
+            data: {
+                columns: [
+                    ['Total',{{ energia_dia_total }}]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                width: 40,
+                min: 0,
+                max: 10000,
+                units: '{{ energia_dia_total }} Kwh',
+            },
+            color: {
+                pattern: ['#ffc107'],
+                threshold: {
+                    values: [90]
+                }
+            },
+            size: {
+                height: 150
+            }
+        });
+
+        var gaugeChart = c3.generate({
+            bindto: '#c3-gauge-semanal',            
+            data: {
+                columns: [
+                    ['Total', 91.4]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                width: 40,
+                min: 0,
+                max: 100,
+                units: '100 Kwh',
+            },
+            color: {
+                pattern: ['#ffc107'],
+                threshold: {
+                    values: [90]
+                }
+            },
+            size: {
+                height: 150
+            }
+        });
+
+        var gaugeChart = c3.generate({
+            bindto: '#c3-gauge-mensal',            
+            data: {
+                columns: [
+                    ['Total', 91.4]
+                ],
+                type: 'gauge',
+            },
+            gauge: {
+                width: 40,
+                min: 0,
+                max: 100,
+                units: '100 Kwh',
+            },
+            color: {
+                pattern: ['#ffc107'],
+                threshold: {
+                    values: [90]
+                }
+            },
+            size: {
+                height: 150
+            }
+        });
+    });
+</script>
+{% endblock %}

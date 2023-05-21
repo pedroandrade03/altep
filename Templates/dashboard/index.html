@@ -20,12 +20,13 @@
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-7">
-                                        <h6 class='card-subtitle font-10'>{{ inversor_1_last_activity }}<h6>
+                                        <h6 class='card-subtitle font-12'>{{ inversor_1_last_activity|default:'Sem dados' }}<h6>
                                         <span class="action-icon badge badge-inversor-1 mr-0"><i class="dripicons-brightness-max"></i></span>
                                     </div>
                                     <div class="col-5 text-right">
                                         <h5 class="card-title font-14">Inversor 1</h5>
-                                        <h4 class="mb-0">{{ inversor_1 }} kWh</h4>
+                                        <h4 class="mb-1">{{ inversor_1 }} kWh</h4>
+                                        <h5 class='font-13'>(Predio D)</h5>
                                     </div>
                                 </div>
                             </div>
@@ -59,12 +60,14 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-5">
+                                    <div class="col-7">
+                                        <h6 class='card-subtitle font-12'>{{ inversor_2_last_activity|default:'Sem dados' }}<h6>
                                         <span class="action-icon badge badge-inversor-2 mr-0"><i class="dripicons-brightness-max"></i></span>
                                     </div>
-                                    <div class="col-7 text-right">
+                                    <div class="col-5 text-right">
                                         <h5 class="card-title font-14">Inversor 2</h5>
-                                        <h4 class="mb-0">{{ inversor_2 }} kWh</h4>
+                                        <h4 class="mb-1">{{ inversor_2 }} kWh</h4>
+                                        <h5 class='font-13'>(Predio D)</h5>
                                     </div>
                                 </div>
                             </div>
@@ -98,12 +101,14 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-5">
+                                    <div class="col-7">
+                                        <h6 class='card-subtitle font-12'>{{ inversor_3_last_activity|default:'Sem dados' }}<h6>
                                         <span class="action-icon badge badge-inversor-3 mr-0"><i class="dripicons-brightness-max"></i></span>
                                     </div>
-                                    <div class="col-7 text-right">
+                                    <div class="col-5 text-right">
                                         <h5 class="card-title font-14">Inversor 3</h5>
-                                        <h4 class="mb-0">{{ inversor_3 }} kWh</h4>
+                                        <h4 class="mb-1">{{ inversor_3 }} kWh</h4>
+                                        <h5 class='font-13'>(Predio D)</h5>
                                     </div>
                                 </div>
                             </div>
@@ -137,12 +142,14 @@
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="row align-items-center">
-                                    <div class="col-5">
+                                    <div class="col-7">
+                                        <h6 class='card-subtitle font-12'>{{ inversor_1_last_activity|default:'Sem dados' }}<h6>
                                         <span class="action-icon badge badge-inversor-4 mr-0"><i class="dripicons-brightness-max"></i></span>
                                     </div>
-                                    <div class="col-7 text-right">
+                                    <div class="col-5 text-right">
                                         <h5 class="card-title font-14">Inversor 4</h5>
-                                        <h4 class="mb-0">{{ inversor_4 }} kWh</h4>
+                                        <h4 class="mb-1">{{ inversor_4 }} kWh</h4>
+                                        <h5 class='font-13'>(Cantina)</h5>
                                     </div>
                                 </div>
                             </div>
@@ -317,7 +324,7 @@
                 enabled: false
             }
         },
-        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        colors: ['#FFC107','#8A8A8A','#0099FF','#011126'],
         series: [{
             name: "Inversor 1",
             data: {{ inversor_1_energia_dia_grafico }}
@@ -436,7 +443,7 @@
                 enabled: false
             }
         },
-        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        colors: ['#FFC107','#8A8A8A','#0099FF','#011126'],
         series: [{
             name: "Inversor 1",
             data: {{ inversor_1_energia_semana_grafico }}
@@ -563,7 +570,7 @@
                 enabled: false
             }
         },
-        colors: ['#ffc107','#BFBFBF','#1FBFFA','#50C55C'],
+        colors: ['#FFC107','#8A8A8A','#0099FF','#011126'],
         series: [{
             name: "Inversor 1",
             data: {{ inversor_1_energia_mes_grafico }}
@@ -710,7 +717,7 @@
             gauge: {
                 width: 40,
                 min: 0,
-                max: 5000,
+                max: 1000,
                 units: '{{ energia_semana_total }} kWh',
             },
             color: {
@@ -735,7 +742,7 @@
             gauge: {
                 width: 40,
                 min: 0,
-                max: 1000,
+                max: 5000,
                 units: '{{ energia_mes_total }} kWh',
             },
             color: {

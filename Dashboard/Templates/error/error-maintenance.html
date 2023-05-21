@@ -1,0 +1,29 @@
+{% extends 'components/error/base.html' %}
+{% load static %}
+{% block container %}
+	<!-- Start Container -->
+    <div id="containerbar" class="containerbar authenticate-bg">
+        <!-- Start Container -->
+        <div class="container">
+            <div class="auth-box error-box">
+                <!-- Start row -->
+                 <div class="row no-gutters align-items-center justify-content-center">
+                    <!-- Start col -->
+                    <div class="col-md-8 col-lg-6">
+                        <div class="text-center">
+                            <img src="{% static 'assets/images/logo.svg' %}" class="img-fluid error-logo" alt="logo">
+                            <img src="{% static 'assets/images/error/maintenance.svg' %}" class="img-fluid error-image" alt="maintenance">
+                            <h4 class="error-subtitle mb-4">System is under maintenance</h4>
+                            <p class="mb-4">We sincerely apologize for the inconvenience. Please, come back later.</p>
+                            <a href="index.html" class="btn btn-primary font-16"><i class="feather icon-home mr-2"></i> Go back to Dashboard</a>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End row -->
+            </div>
+        </div>
+        <!-- End Container -->
+    </div>
+    <!-- End Containerbar -->
+{% endblock %}

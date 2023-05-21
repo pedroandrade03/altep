@@ -1,0 +1,31 @@
+{% extends 'components/error/base.html' %}
+{% load static %}
+{% block container %}
+	<!-- Start Container -->
+    <div id="containerbar" class="containerbar authenticate-bg">
+        <!-- Start Container -->
+        <div class="container">
+            <div class="auth-box error-box">
+                <!-- Start row -->
+                 <div class="row no-gutters align-items-center justify-content-center">
+                    <!-- Start col -->
+                    <div class="col-md-8 col-lg-6">
+                        <div class="text-center">
+                            <img src="{% static 'assets/images/altep.png.' %}" class="img-fluid error-logo" alt="logo">
+                            <img src="{% static 'assets/images/error/coming-soon.svg' %}" class="img-fluid error-image" alt="coming soon">
+                            <h4 class="error-subtitle mb-4">Website is under construction.</h4>
+                            <p class="mb-4">We will be back shortly. Thank you for your patience.</p>
+                            <div class="counter-box">
+                                <div id="counter"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End row -->
+            </div>
+        </div>
+        <!-- End Container -->
+    </div>
+    <!-- End Containerbar -->
+{% endblock %}

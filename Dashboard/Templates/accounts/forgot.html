@@ -1,0 +1,40 @@
+{% extends 'components/accounts/base.html' %}
+{% load static %}
+{% block content %}
+    <div id="containerbar" class="containerbar authenticate-bg">
+        <!-- Start Container -->
+        <div class="container">
+            <div class="auth-box forgot-password-box">
+                <!-- Start row -->
+                <div class="row no-gutters align-items-center justify-content-center">
+                    <!-- Start col -->
+                    <div class="col-md-6 col-lg-5">
+                        <!-- Start Auth Box -->
+                        <div class="auth-box-right">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="#">
+                                        <div class="form-head">
+                                            <a href="index.html" class="logo"><img src="{% static 'assets/images/altep.png' %}" class="img-fluid" alt="logo"></a>
+                                        </div>  
+                                        <p class="mb-4">Entre com seu email e aguarde as instruçôes para redefinição de senha.</p>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                        </div>                          
+                                    <button type="submit" class="btn btn-warning btn-lg btn-block font-18">Enviar</button>
+                                    </form>
+                                    <p class="mb-0 mt-3">Relembrou a senha? <a href="{% url 'login' %}" class='text-warning' >Entrar</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Auth Box -->
+                    </div>
+                    <!-- End col -->
+                </div>
+                <!-- End row -->
+            </div>
+        </div>
+        <!-- End Container -->
+    </div>
+    <!-- End Containerbar -->
+{% endblock %}
